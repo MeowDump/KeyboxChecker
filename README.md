@@ -13,6 +13,8 @@ export RUSTFLAGS=" -C lto=no" && export CARGO_BUILD_TARGET="$(rustc -vV | sed -n
 
 # Usage
 ```bash
+cd KeyboxChecker
 python main.py path/to/keybox.xml
 ```
+
 
