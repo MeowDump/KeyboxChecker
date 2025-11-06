@@ -1,4 +1,5 @@
-> [!Termux Installation Guide]
+# Termux Installation Guide
+> [!TIP]
 > Copy-Paste the following commands in termux, if it asks for confirmation, type `y` and hit `ENTER` button in your keyboard
 ```bash
 termux-setup-storage
@@ -14,3 +15,4 @@ export RUSTFLAGS=" -C lto=no" && export CARGO_BUILD_TARGET="$(rustc -vV | sed -n
 ```bash
 python main.py path/to/keybox.xml
 ```
+
