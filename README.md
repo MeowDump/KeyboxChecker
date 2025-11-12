@@ -6,15 +6,16 @@ termux-setup-storage
 pkg update && pkg upgrade -y
 pkg install git python python-pip rust openssl -y
 pip install --upgrade pip setuptools
-git clone https://github.com/MeowDump/KeyboxChecker
+git clone https://github.com/MeowDump/KeyboxCheckerPython
 export RUSTFLAGS=" -C lto=no" && export CARGO_BUILD_TARGET="$(rustc -vV | sed -n 's|host: ||p')" && pip install cryptography aiohttp colorama
 
 ```
 
 # Usage
 ```bash
-cd KeyboxChecker
+cd KeyboxCheckerPython
 python main.py path/to/keybox.xml
 ```
+
 
 
