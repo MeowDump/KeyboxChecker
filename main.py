@@ -72,6 +72,7 @@ async def keybox_check(path):
     if os.path.isdir(path):
         return {"error": f"Expected a file, not a directory: {path}"}
 
+    # The banner string is correctly defined here
     output = {"banner": "░▀█▀░█▀█░▀█▀░█▀▀░█▀▀░█▀█░▀█▀░▀█▀░█░█░░\n"
                         "░░█░░█░█░░█░░█▀▀░█░█░█▀▄░░█░░░█░░░█░░░\n"
                         "░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀░░▀░░░▀░░░"}
@@ -221,5 +222,23 @@ if __name__ == "__main__":
     if not args.keybox_path:
         print("Error: please provide a keybox.xml path.")
         sys.exit(1)
+        
     result = asyncio.run(keybox_check(args.keybox_path))
+    
+    # --- START OF FIX: Handle banner output separately ---
+    
+    # 1. Check if the banner is present
+    banner_string = result.get("banner")
+    
+    # 2. If present, print it directly (this correctly renders the Unicode art)
+    if banner_string:
+        print(banner_string)
+        
+    # 3. Remove the banner key from the dictionary before dumping the JSON
+    if "banner" in result:
+        del result["banner"]
+        
+    # --- END OF FIX ---
+    
+    # 4. Print the rest of the result as clean JSON
     print(json.dumps(result, indent=2))
